@@ -3,18 +3,23 @@ package com.company;
 import static com.company.Utils.MAX_VALUE;
 import static com.company.Utils.MIN_VALUE;
 
-public class Triangle {
+public class TriangleService {
 
-    private int id;
-    private float a,b,c;
+    public Triangle findTriangleById(int id){
 
-    public Triangle(float a, float b, float c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        //todo: we need return the triangle with the id
+        return null;
+
     }
 
-    public TriangleType getTriangleType(){
+
+    public static TriangleType getTriangleType(Triangle triangle){
+
+        float a = triangle.getA();
+        float b = triangle.getB();
+        float c = triangle.getC();
+
+
         //validate sizes
         if(a > MAX_VALUE || b > MAX_VALUE || c > MAX_VALUE)
             return TriangleType.INVALID_INPUTS;
@@ -44,31 +49,5 @@ public class Triangle {
             return TriangleType.Isosceles;
 
         return TriangleType.Scalene;
-    }
-
-    public float getA() {
-        return a;
-    }
-
-    public float getB() {
-        return b;
-    }
-
-    public float getC() {
-        return c;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return "Triangle{" +
-                "id=" + id +
-                ", a=" + a +
-                ", b=" + b +
-                ", c=" + c +
-                '}';
     }
 }
