@@ -1,12 +1,9 @@
 package com.company;
 
-import static com.company.Utils.MAX_VALUE;
-import static com.company.Utils.MIN_VALUE;
-
 public class Triangle {
 
     private int id;
-    private float a,b,c;
+    private double a,b,c;
 
     public Triangle(float a, float b, float c) {
         this.a = a;
@@ -14,15 +11,15 @@ public class Triangle {
         this.c = c;
     }
 
-    public float getA() {
+    public double getA() {
         return a;
     }
 
-    public float getB() {
+    public double getB() {
         return b;
     }
 
-    public float getC() {
+    public double getC() {
         return c;
     }
 

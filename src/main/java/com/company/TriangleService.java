@@ -1,24 +1,33 @@
 package com.company;
 
-import static com.company.Utils.MAX_VALUE;
-import static com.company.Utils.MIN_VALUE;
+import com.company.utilspkg.TriangleType;
+
+import static com.company.utilspkg.Utils.MAX_VALUE;
+import static com.company.utilspkg.Utils.MIN_VALUE;
 
 public class TriangleService {
 
+    /**
+     * Returns a triangle with the id of the param
+     *
+     * @param id
+     * @return triangle
+     */
     public Triangle findTriangleById(int id){
-
-        //TODO: we need return the triangle with the id
-        return null;
-
+        throw new UnsupportedOperationException();
     }
 
 
+    /**
+     * Returns the type of the triangle. Possible types: INVALID_INPUTS, NOT_A_TRIANGLE, Equilateral, Isosceles, Scalene
+     * @param triangle
+     * @return
+     */
     public static TriangleType getTriangleType(Triangle triangle){
 
-        float a = triangle.getA();
-        float b = triangle.getB();
-        float c = triangle.getC();
-
+        double a = triangle.getA();
+        double b = triangle.getB();
+        double c = triangle.getC();
 
         //validate sizes
         if(a > MAX_VALUE || b > MAX_VALUE || c > MAX_VALUE)
