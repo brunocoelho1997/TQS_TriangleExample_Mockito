@@ -65,6 +65,73 @@ public class TriangleTest{
         assertEquals(res, TriangleService.getTriangleType(instance));
     }
 
+
+    /*
+        Test dummy object
+     */
+    @Test
+    public void testDummyObject(){
+
+    }
+
+    /*
+        Test spy object
+     */
+    @Test
+    public void testSpyObject(){
+
+    }
+
+    /*
+        Test mock object
+     */
+    @Test
+    public void testMockObject(){
+
+    }
+
+    /*
+        Test sub object
+     */
+    @Test
+    public void testStubObject(){
+
+    }
+
+    /*
+        Test sub object
+     */
+    @Test
+    public void testFakeObject(){
+
+    }
+
+    /*
+        Test captor
+     */
+    @Test
+    public void testCaptor(){
+
+    }
+
+    /*
+        Test inject mocks
+     */
+    @Test
+    public void testInjectMocks(){
+
+    }
+
+    /*
+        Test BDD Mockito
+     */
+    @Test
+    public void testBDDMockito(){
+
+    }
+
+
+
     @Test
     public void testFindTriangleById(){
 
