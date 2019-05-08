@@ -1,5 +1,6 @@
 import com.company.*;
 import com.company.utilspkg.TriangleType;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -24,16 +25,34 @@ public class TriangleTest {
     @Test
     public void testDummyObject(){
 
+        TriangleService triangleService = new TriangleService();
+
+        //Sem Instanciar
         Triangle dummyTriangle = Mockito.mock(Triangle.class);
 
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
         list.add(dummyTriangle);
         //list.add(new Triangle(2,2,2));
-        System.out.println("Resultado" + list.toString());//demonstrar que o dummy sem ser instanciado não imprime nada!
+        System.out.println("Resultado EX1: " + list.toString());
 
         assertEquals(1, list.size());
 
+        System.out.println("Triangle type:" + triangleService.getTriangleType(list.get(0)));
+
+
+        //Instaciar
+        Triangle dummyTriangle2 = Mockito.mock(Triangle.class);
+
+        ArrayList<Triangle> list2 = new ArrayList<Triangle>();
+
+        //list2.add(dummyTriangle);
+        list2.add(new Triangle(2,2,2));
+        System.out.println("Resultado EX2: " + list2.toString());
+
+        assertEquals(1, list2.size());
+
+        System.out.println("Triangle type:" + triangleService.getTriangleType(list2.get(0)));
     }
 
     /*
@@ -41,11 +60,13 @@ public class TriangleTest {
      */
 
     @Spy
-    //ArrayList<Triangle> triangleList; Nao sei pq dá mal estando declarado assim, nao faz sentido pq já tem a anotação @Spy antes e devia chegar!!!
-    ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
+     ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
 
     @Test
     public void testSpyObject(){
+
+        TriangleService triangleService = new TriangleService();
+
 
         Triangle triangle = new Triangle(2,2,2);
 
@@ -55,7 +76,27 @@ public class TriangleTest {
 
         assertEquals(1, triangleList.size());
 
+        System.out.println("Triangle type:" + triangleService.getTriangleType(triangleList.get(0)));
+
+//-------------------------------------------------------------------------
+
+        //Outro exemplo
+        ArrayList<Triangle> list = new ArrayList<Triangle>();
+        ArrayList<Triangle> spyList = Mockito.spy(list);
+
+
+        spyList.add(new Triangle(2,2,2));
+        spyList.add(new Triangle(2,3,2));
+
+        Mockito.verify(spyList).add(new Triangle(2,2,2));
+        Mockito.verify(spyList).add(new Triangle(2,3,2));
+
+        assertEquals(2, spyList.size());
+
+        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)));
+        System.out.println("Triangle 2 type:" + triangleService.getTriangleType(spyList.get(1)));
     }
+    //TODO: Ambos os casos de estudo estão a dar argumentos diferentes ao correr o codigo, não esotu a conseguir perceber porque ou o que estou a fazer de errado xD
 
     /*
         Test mock object
