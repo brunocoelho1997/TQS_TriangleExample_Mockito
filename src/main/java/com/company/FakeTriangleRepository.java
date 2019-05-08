@@ -21,4 +21,9 @@ public class FakeTriangleRepository {
     public Triangle findTriangleById(int id){
         return triangleMap.get(id);
     }
+
+    public boolean create(Triangle triangle) {
+        triangleMap.put(triangle.getId(), triangle);
+        return true;
+    }
 }

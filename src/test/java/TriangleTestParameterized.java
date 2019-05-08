@@ -1,4 +1,5 @@
 import com.company.Triangle;
+import com.company.TriangleBuilder;
 import com.company.TriangleService;
 import com.company.utilspkg.TriangleType;
 import org.junit.Test;
@@ -6,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.*;
@@ -17,7 +19,7 @@ import static com.company.utilspkg.Utils.*;
 public class TriangleTestParameterized {
 
     int id;
-    private float a, b, c;
+    private double a, b, c;
     private TriangleType res;
 
     @BeforeEach
@@ -25,7 +27,7 @@ public class TriangleTestParameterized {
         MockitoAnnotations.initMocks(this);
     }
 
-    public TriangleTestParameterized(float a, float b, float c, TriangleType res) {
+    public TriangleTestParameterized(double a, double b, double c, TriangleType res) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -59,16 +61,16 @@ public class TriangleTestParameterized {
 
     @Test
     public void testTriangleType() {
+
+        TriangleService triangleService = new TriangleService();
+
         System.out.println("Testing :"+a+","+b+","+c+" -> "+res);
-        Triangle instance = new Triangle(a,b,c);
-        //assertEquals(res, instance.getType());
-        Assertions.assertEquals(res, TriangleService.getTriangleType(instance));
+
+        TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
+        triangleBuilder.prepareTriangle(a,b,c);
+        Mockito.when(triangleBuilder.build()).thenReturn(new Triangle(a,b,c));
+
+        Assertions.assertEquals(res, triangleService.getTriangleType(triangleBuilder.build()));
     }
-
-
-    /*
-    TODO: Precisamos de definir mais testes aqui... Misturar com o Mockito
-     */
-
 
 }

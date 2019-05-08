@@ -39,16 +39,32 @@ public class TriangleTest {
     @Test
     public void testStubObject(){
 
-        TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
+        System.out.println("-----------------");
+        System.out.println("-Test sub object-");
 
         //Example 1:
+        System.out.println("Example 1:");
+        TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
+
         triangleBuilder.prepareTriangle(-2.0,-1.0,12.0);
         Mockito.when(triangleBuilder.build()).thenReturn(new Triangle(-2, -1, 12));
 
+        System.out.println("Triangle returned by TriangleBuilder: " + triangleBuilder.build());
+
         //Example 2:
+        System.out.println("\nExample 2:");
+        TriangleService triangleService = new TriangleService();
+        Triangle mockedTriangle = Mockito.mock(Triangle.class);
+        Mockito.when(mockedTriangle.getA()).thenReturn(5.0);
+        Mockito.when(mockedTriangle.getB()).thenReturn(5.0);
+        Mockito.when(mockedTriangle.getC()).thenReturn(5.0);
 
-        //assertEquals(TriangleType.Equilateral, TriangleService.getTriangleType(equilateralTriangle));
-
+        System.out.println("Mocked Triangle: " + mockedTriangle);
+        System.out.println("Mocked Triangle - A: " + mockedTriangle.getA());
+        System.out.println("Mocked Triangle - B: " + mockedTriangle.getB());
+        System.out.println("Mocked Triangle - C: " + mockedTriangle.getC());
+        System.out.println("Mocked Triangle - Type: " + triangleService.getTriangleType(mockedTriangle));
+        System.out.println("-----------------");
 
     }
 
@@ -58,22 +74,23 @@ public class TriangleTest {
     @Test
     public void testFakeObject(){
 
+        TriangleService triangleService = new TriangleService();
         FakeTriangleRepository fakeTriangleRepository = new FakeTriangleRepository();
 
         Triangle invalidInputsTriangle = fakeTriangleRepository.findTriangleById(1);
         System.out.println(invalidInputsTriangle);
-        Assertions.assertEquals(TriangleType.INVALID_INPUTS, TriangleService.getTriangleType(invalidInputsTriangle));
+        Assertions.assertEquals(TriangleType.INVALID_INPUTS, triangleService.getTriangleType(invalidInputsTriangle));
 
         Triangle equilateralTriangle = fakeTriangleRepository.findTriangleById(2);
         System.out.println(equilateralTriangle);
-        assertEquals(TriangleType.Equilateral, TriangleService.getTriangleType(equilateralTriangle));
+        assertEquals(TriangleType.Equilateral, triangleService.getTriangleType(equilateralTriangle));
 
         Triangle isoscelesTriangle = fakeTriangleRepository.findTriangleById(3);
         System.out.println(isoscelesTriangle);
-        assertEquals(TriangleType.Isosceles, TriangleService.getTriangleType(isoscelesTriangle));
+        assertEquals(TriangleType.Isosceles, triangleService.getTriangleType(isoscelesTriangle));
 
         Triangle notTriangle = fakeTriangleRepository.findTriangleById(4);
-        assertEquals(TriangleType.Scalene, TriangleService.getTriangleType(notTriangle));
+        assertEquals(TriangleType.Scalene, triangleService.getTriangleType(notTriangle));
 
     }
 
@@ -98,6 +115,30 @@ public class TriangleTest {
      */
     @Test
     public void testBDDMockito(){
+
+        System.out.println("-----------------");
+        System.out.println("-Test sub object-");
+
+
+        FakeTriangleRepository fakeTriangleRepository = new FakeTriangleRepository();
+
+        FakeTriangleRepository fakeTriangleRepositorySpy = Mockito.spy(fakeTriangleRepository);
+
+        Triangle xptoTriangle = new Triangle(1221, 4.0, 5.0, 3.0);
+
+        Mockito.when(fakeTriangleRepositorySpy.findTriangleById(1221)).thenReturn(null);
+
+        fakeTriangleRepositorySpy.create(xptoTriangle);
+
+        Mockito.verify(fakeTriangleRepositorySpy).findTriangleById(1221);
+
+
+        //Without BDD Mockito:
+        System.out.println("Without BDD Mockito:");
+
+
+
+
 
     }
 

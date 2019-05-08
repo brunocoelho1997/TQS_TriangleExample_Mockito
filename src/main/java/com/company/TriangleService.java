@@ -9,11 +9,19 @@ public class TriangleService {
 
     /**
      * Returns a triangle with the id of the param
-     *
      * @param id
      * @return triangle
      */
     public Triangle findTriangleById(int id){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Insert a new triangle in db
+     * @param triangle
+     * @return true if created and inserted in db with success, otherwise returns false
+     */
+    public boolean create(Triangle triangle){
         throw new UnsupportedOperationException();
     }
 
@@ -23,7 +31,7 @@ public class TriangleService {
      * @param triangle
      * @return
      */
-    public static TriangleType getTriangleType(Triangle triangle){
+    public TriangleType getTriangleType(Triangle triangle){
 
         double a = triangle.getA();
         double b = triangle.getB();
