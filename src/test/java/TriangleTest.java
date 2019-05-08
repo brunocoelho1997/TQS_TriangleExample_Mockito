@@ -50,11 +50,11 @@ public class TriangleTest {
      */
 
     @Spy
-    //ArrayList<Triangle> triangleList; Nao sei pq dá mal estando declarado assim, nao faz sentido pq já tem a anotação @Spy antes e devia chegar!!!
-    ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
+     ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
 
     @Test
     public void testSpyObject(){
+
 
         Triangle triangle = new Triangle(2,2,2);
 
@@ -64,6 +64,20 @@ public class TriangleTest {
 
         assertEquals(1, triangleList.size());
 
+
+//-------------------------------------------------------------------------
+
+        //Outro exemplo
+        ArrayList<Triangle> list = new ArrayList<Triangle>();
+        ArrayList<Triangle> spyList = Mockito.spy(list);
+
+        spyList.add(new Triangle(2,2,2));
+        spyList.add(new Triangle(2,3,2));
+
+        Mockito.verify(spyList).add(new Triangle(2,2,2));
+        Mockito.verify(spyList).add(new Triangle(2,3,2));
+
+        assertEquals(2, spyList.size());
     }
 
     /*
