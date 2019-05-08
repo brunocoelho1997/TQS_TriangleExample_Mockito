@@ -1,8 +1,14 @@
 import com.company.*;
 import com.company.utilspkg.TriangleType;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,19 +21,43 @@ public class TriangleTest {
     @Test
     public void testDummyObject(){
 
+        Triangle dummyTriangle = Mockito.mock(Triangle.class);
+
+        ArrayList<Triangle> list = new ArrayList<Triangle>();
+
+        list.add(dummyTriangle);
+        //list.add(new Triangle(2,2,2));
+        System.out.println("Resultado" + list.toString());//demonstrar que o dummy sem ser instanciado não imprime nada!
+
+        assertEquals(1, list.size());
+
     }
 
     /*
         Test spy object
      */
+
+    @Spy
+    //ArrayList<Triangle> triangleList; Nao sei pq dá mal estando declarado assim, nao faz sentido pq já tem a anotação @Spy antes e devia chegar!!!
+    ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
+
     @Test
     public void testSpyObject(){
+
+        Triangle triangle = new Triangle(2,2,2);
+
+        triangleList.add(triangle);
+
+        Mockito.verify(triangleList).add(new Triangle(2,2,2));
+
+        assertEquals(1, triangleList.size());
 
     }
 
     /*
         Test mock object
      */
+
     @Test
     public void testMockObject(){
 

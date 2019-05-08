@@ -1,9 +1,12 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Triangle {
 
     private int id;
     private double a,b,c;
+    public ArrayList<Triangle> list;
 
     public Triangle(float a, float b, float c) {
         this.a = a;

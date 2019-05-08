@@ -68,6 +68,7 @@ public class TriangleTestParameterized {
 
     /*
     TODO: Precisamos de definir mais testes aqui... Misturar com o Mockito
+    //Stefan:  Mais testes em que sentido?
      */
 
 
