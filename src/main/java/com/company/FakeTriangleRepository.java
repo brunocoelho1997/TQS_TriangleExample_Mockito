@@ -16,6 +16,7 @@ public class FakeTriangleRepository {
         this.triangleMap.put(2, new Triangle(1,1,1));
         this.triangleMap.put(3, new Triangle(MIDDLE_VALUE, MIN_VALUE, MIDDLE_VALUE));
         this.triangleMap.put(4, new Triangle(MAX_VALUE - 1, MIDDLE_VALUE, MIDDLE_VALUE + 1));
+        this.triangleMap.put(5, new Triangle(2,2,2));
     }
 
     public Triangle findTriangleById(int id){
