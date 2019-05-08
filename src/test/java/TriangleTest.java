@@ -1,5 +1,6 @@
 import com.company.*;
 import com.company.utilspkg.TriangleType;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -21,6 +22,8 @@ public class TriangleTest {
     @Test
     public void testDummyObject(){
 
+        TriangleService triangleService = new TriangleService();
+
         //Sem Instanciar
         Triangle dummyTriangle = Mockito.mock(Triangle.class);
 
@@ -31,6 +34,8 @@ public class TriangleTest {
         System.out.println("Resultado EX1: " + list.toString());
 
         assertEquals(1, list.size());
+
+        System.out.println("Triangle type:" + triangleService.getTriangleType(list.get(0)));
 
 
         //Instaciar
@@ -43,6 +48,8 @@ public class TriangleTest {
         System.out.println("Resultado EX2: " + list2.toString());
 
         assertEquals(1, list2.size());
+
+        System.out.println("Triangle type:" + triangleService.getTriangleType(list2.get(0)));
     }
 
     /*
@@ -55,6 +62,8 @@ public class TriangleTest {
     @Test
     public void testSpyObject(){
 
+        TriangleService triangleService = new TriangleService();
+
 
         Triangle triangle = new Triangle(2,2,2);
 
@@ -64,12 +73,14 @@ public class TriangleTest {
 
         assertEquals(1, triangleList.size());
 
+        System.out.println("Triangle type:" + triangleService.getTriangleType(triangleList.get(0)));
 
 //-------------------------------------------------------------------------
 
         //Outro exemplo
         ArrayList<Triangle> list = new ArrayList<Triangle>();
         ArrayList<Triangle> spyList = Mockito.spy(list);
+
 
         spyList.add(new Triangle(2,2,2));
         spyList.add(new Triangle(2,3,2));
@@ -78,7 +89,11 @@ public class TriangleTest {
         Mockito.verify(spyList).add(new Triangle(2,3,2));
 
         assertEquals(2, spyList.size());
+
+        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)));
+        System.out.println("Triangle 2 type:" + triangleService.getTriangleType(spyList.get(1)));
     }
+    //TODO: Ambos os casos de estudo estão a dar argumentos diferentes ao correr o codigo, não esotu a conseguir perceber porque ou o que estou a fazer de errado xD
 
     /*
         Test mock object
