@@ -3,12 +3,15 @@ import com.company.utilspkg.TriangleType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.mockito.BDDMockito;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -147,28 +150,40 @@ public class TriangleTest {
     public void testBDDMockito(){
 
         System.out.println("-----------------");
-        System.out.println("-Test sub object-");
+        System.out.println("-Test BDD Mockito-");
 
 
-        FakeTriangleRepository fakeTriangleRepository = new FakeTriangleRepository();
+        System.out.println("-Without BDD Mockito-");
 
-        FakeTriangleRepository fakeTriangleRepositorySpy = Mockito.spy(fakeTriangleRepository);
+        ArrayList<Triangle> triangleListMocked = Mockito.mock(ArrayList.class);
+        //Quando pedir o tamanho do arrayList deverá indicar que é 0
+        Mockito.when(triangleListMocked.size()).thenReturn(0);
+        System.out.println("triangleList.size(): " + triangleListMocked.size());
 
-        Triangle xptoTriangle = new Triangle(1221, 4.0, 5.0, 3.0);
+        //cria um triangulo e insere no array
+        Triangle triangle = new Triangle(2,2,2);
+        triangleListMocked.add(triangle);
 
-        Mockito.when(fakeTriangleRepositorySpy.findTriangleById(1221)).thenReturn(null);
+        //verifica se o método add foi chamado e com este triangulo
+        Mockito.verify(triangleListMocked).add(triangle);
 
-        fakeTriangleRepositorySpy.create(xptoTriangle);
+        //---------------------------------------------------------------------------------
+        System.out.println("-With BDD Mockito-");
+        triangleListMocked = Mockito.mock(ArrayList.class);
+        //Quando pedir o tamanho do arrayList deverá indicar que é 0
+        BDDMockito.given(triangleListMocked.size()).willReturn(0);
+        System.out.println("triangleList.size(): " + triangleListMocked.size());
 
-        Mockito.verify(fakeTriangleRepositorySpy).findTriangleById(1221);
+        //cria um triangulo e insere no array
+        triangle = new Triangle(2,2,2);
+        triangleListMocked.add(triangle);
+
+        //verifica se o método add foi chamado e com este triangulo
+        BDDMockito.then(triangleListMocked).should().add(triangle);
 
 
-        //Without BDD Mockito:
-        System.out.println("Without BDD Mockito:");
-
-
-
-
+        //exemplo de erro
+        //BDDMockito.then(triangleListMocked).should().remove(triangle);
 
     }
 

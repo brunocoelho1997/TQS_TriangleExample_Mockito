@@ -24,6 +24,9 @@ public class FakeTriangleRepository {
     }
 
     public boolean create(Triangle triangle) {
+        if(triangle.getId()<=0)
+            return false;
+
         triangleMap.put(triangle.getId(), triangle);
         return true;
     }
