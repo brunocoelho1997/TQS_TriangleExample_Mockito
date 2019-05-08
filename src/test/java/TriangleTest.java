@@ -21,16 +21,28 @@ public class TriangleTest {
     @Test
     public void testDummyObject(){
 
+        //Sem Instanciar
         Triangle dummyTriangle = Mockito.mock(Triangle.class);
 
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
         list.add(dummyTriangle);
         //list.add(new Triangle(2,2,2));
-        System.out.println("Resultado" + list.toString());//demonstrar que o dummy sem ser instanciado não imprime nada!
+        System.out.println("Resultado EX1: " + list.toString());
 
         assertEquals(1, list.size());
 
+
+        //Instaciar
+        Triangle dummyTriangle2 = Mockito.mock(Triangle.class);
+
+        ArrayList<Triangle> list2 = new ArrayList<Triangle>();
+
+        //list2.add(dummyTriangle);
+        list2.add(new Triangle(2,2,2));
+        System.out.println("Resultado EX2: " + list2.toString());
+
+        assertEquals(1, list2.size());
     }
 
     /*
