@@ -37,6 +37,16 @@ public class Triangle {
         return id;
     }
 
+    public void setA(double a){
+        this.a=a;
+    }
+    public void setB(double b){
+        this.b=b;
+    }
+    public void setC(double c){
+        this.c=c;
+    }
+
     @Override
     public String toString() {
         return "Triangle{" +

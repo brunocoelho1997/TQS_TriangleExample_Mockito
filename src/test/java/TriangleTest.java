@@ -28,7 +28,7 @@ public class TriangleTest {
         TriangleService triangleService = new TriangleService();
 
         //Sem Instanciar
-        Triangle dummyTriangle = Mockito.mock(Triangle.class);
+        Triangle dummyTriangle = Mockito.mock(Triangle.class); //dummy object
 
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
@@ -39,20 +39,28 @@ public class TriangleTest {
         assertEquals(1, list.size());
 
         System.out.println("Triangle type:" + triangleService.getTriangleType(list.get(0)));
-
+        System.out.println("--------------------------------------------------------");
 
         //Instaciar
-        Triangle dummyTriangle2 = Mockito.mock(Triangle.class);
+        //Triangle dummyTriangle2 = Mockito.mock(Triangle.class);
+       // Triangle spyTriangle = Mockito.spy(Triangle.class);
 
-        ArrayList<Triangle> list2 = new ArrayList<Triangle>();
+       // spyTriangle.setA(2);
+        //spyTriangle.setB(2);
+        //spyTriangle.setC(2);
 
-        //list2.add(dummyTriangle);
-        list2.add(new Triangle(2,2,2));
-        System.out.println("Resultado EX2: " + list2.toString());
+        //System.out.println("RES1" +dummyTriangle2.toString());
+       // System.out.println("RES2" +spyTriangle.toString());
 
-        assertEquals(1, list2.size());
+       // ArrayList<Triangle> list2 = new ArrayList<Triangle>();
 
-        System.out.println("Triangle type:" + triangleService.getTriangleType(list2.get(0)));
+        //list2.add(spyTriangle);
+        //list2.add(new Triangle(2,2,2));
+        //System.out.println("Resultado EX2: " + list2.toString());
+
+        //assertEquals(1, list2.size());
+
+        //System.out.println("Triangle type:" + triangleService.getTriangleType(list2.get(0)));
     }
 
     /*
