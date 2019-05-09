@@ -18,4 +18,12 @@ public class TriangleBuilder {
         throw new UnsupportedOperationException();
 
     }
+
+    public String toString() {
+        return "Triangle{" +
+                ", a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
+    }
 }

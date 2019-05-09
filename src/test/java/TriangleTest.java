@@ -24,43 +24,28 @@ public class TriangleTest {
      */
     @Test
     public void testDummyObject(){
-
-        TriangleService triangleService = new TriangleService();
-
-        //Sem Instanciar
-        Triangle dummyTriangle = Mockito.mock(Triangle.class); //dummy object
-
+//TODO: Tentei várias maneiras de preencher o valor do objeto dummy, com sets e construtores etc etc mas nao consegui não sei porque, diz que é qq de ser mock e por vezes dava null pointer pq efetivamente nao preenchia o objeto. Contudo funciona como o esparado. Apenas queria mostrra com campos no objeto se der. Até pode não dar. Exemplo disso é o código que está comentado em baixo que ao fazer o print do objeto ele nao retorna nada. Acho que tem a ver com as propiedades do mock.
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
-        list.add(dummyTriangle);
+        Triangle dummy = Mockito.mock(Triangle.class);
 
-        System.out.println("Resultado EX1: " + list.toString());
+        list.add(dummy);
 
-        assertEquals(1, list.size());
+        assertEquals(1, list.size()); //Objeto dummy foi adicionado,
 
-        System.out.println("Triangle type:" + triangleService.getTriangleType(list.get(0)));
-        System.out.println("--------------------------------------------------------");
+        //System.out.println("RES: " + list.toString()); //mas se quisermos verificar o valor dele é nulo claro porque nao foi preenchido com valores.
 
-        //Instaciar
-        //Triangle dummyTriangle2 = Mockito.mock(Triangle.class);
-       // Triangle spyTriangle = Mockito.spy(Triangle.class);
 
-       // spyTriangle.setA(2);
-        //spyTriangle.setB(2);
-        //spyTriangle.setC(2);
+        //Não retirar, foi uma conclusao que cheguei sobre mock que tenho de falar contigo!
+        //System.out.println("--------------------------------------------------------");
+        //TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
+        //triangleBuilder.prepareTriangle(2,2,2);
+        //System.out.println("RES: " + triangleBuilder.toString());
 
-        //System.out.println("RES1" +dummyTriangle2.toString());
-       // System.out.println("RES2" +spyTriangle.toString());
 
-       // ArrayList<Triangle> list2 = new ArrayList<Triangle>();
 
-        //list2.add(spyTriangle);
-        //list2.add(new Triangle(2,2,2));
-        //System.out.println("Resultado EX2: " + list2.toString());
 
-        //assertEquals(1, list2.size());
 
-        //System.out.println("Triangle type:" + triangleService.getTriangleType(list2.get(0)));
     }
 
     /*
@@ -104,7 +89,7 @@ public class TriangleTest {
         assertEquals(1, spyList.size());
         assertEquals(0, list.size());
 
-        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)));
+        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)) + "\n");
         System.out.println("SIZE original list:" + list.size());//lista original permanece igual
         System.out.println("SIZE spy list:" + spyList.size());//spy list é alterada
 

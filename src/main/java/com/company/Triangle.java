@@ -8,6 +8,7 @@ public class Triangle {
     private double a,b,c;
     public ArrayList<Triangle> list;
 
+
     public Triangle(double a, double b, double c) {
         this.a = a;
         this.b = b;
@@ -46,6 +47,10 @@ public class Triangle {
     public void setC(double c){
         this.c=c;
     }
+
+
+
+
 
     @Override
     public String toString() {
