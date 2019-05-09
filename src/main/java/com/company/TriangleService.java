@@ -31,6 +31,10 @@ public class TriangleService {
      * @param triangle
      * @return
      */
+
+    public void sendTriangle(Triangle triangle){
+
+    }
     public TriangleType getTriangleType(Triangle triangle){
 
         double a = triangle.getA();

@@ -33,7 +33,7 @@ public class TriangleTest {
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
         list.add(dummyTriangle);
-        //list.add(new Triangle(2,2,2));
+
         System.out.println("Resultado EX1: " + list.toString());
 
         assertEquals(1, list.size());
@@ -71,32 +71,36 @@ public class TriangleTest {
         Triangle triangle = new Triangle(2,2,2);
 
         triangleList.add(triangle);
+        //triangleService.sendTriangle(triangleList.get(0));
 
-        Mockito.verify(triangleList).add(new Triangle(2,2,2));
+        Mockito.verify(triangleList).add(triangle);
+        //Mockito.verify(triangleService, times()).sendTriangle(triangleList.get(0));
 
         assertEquals(1, triangleList.size());
 
         System.out.println("Triangle type:" + triangleService.getTriangleType(triangleList.get(0)));
+        System.out.println("--------------------------------------------------------");
 
 //-------------------------------------------------------------------------
 
         //Outro exemplo
         ArrayList<Triangle> list = new ArrayList<Triangle>();
+
         ArrayList<Triangle> spyList = Mockito.spy(list);
 
+        Triangle triangle2 = new Triangle(2,3,2);
+        spyList.add(triangle2);
 
-        spyList.add(new Triangle(2,2,2));
-        spyList.add(new Triangle(2,3,2));
+        Mockito.verify(spyList).add(triangle2);
 
-        Mockito.verify(spyList).add(new Triangle(2,2,2));
-        Mockito.verify(spyList).add(new Triangle(2,3,2));
-
-        assertEquals(2, spyList.size());
+        assertEquals(1, spyList.size());
+        assertEquals(0, list.size());
 
         System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)));
-        System.out.println("Triangle 2 type:" + triangleService.getTriangleType(spyList.get(1)));
+        System.out.println("SIZE original list:" + list.size());//lista original permanece igual
+        System.out.println("SIZE spy list:" + spyList.size());//spy list é alterada
+
     }
-    //TODO: Ambos os casos de estudo estão a dar argumentos diferentes ao correr o codigo, não esotu a conseguir perceber porque ou o que estou a fazer de errado xD
 
     /*
         Test mock object
@@ -104,7 +108,20 @@ public class TriangleTest {
 
     @Test
     public void testMockObject(){
+        TriangleService triangleService = new TriangleService();
 
+        ArrayList<Triangle> mockList = Mockito.mock(ArrayList.class);
+
+        Triangle triangle = new Triangle(2,3,2);
+
+        mockList.add(triangle);
+        //TODO: Queria aqui usar o when para enriquecer isto mas não me está a ocorrer como :c
+        //Mockito.when(mockList.add(triangle)).thenReturn();
+        Mockito.verify(mockList).add(triangle);
+
+        assertEquals(0, mockList.size());//Aqui está  adiferença entre o mock e spy, o mock não adiciona nada, apenas chama o metodo sem nenhum efeito colateral, ao contrario do spy que ele realmente chama a implementacao real do metodo add e adiciona o elemento a lista
+
+        System.out.println("Triangle type:" + triangleService.getTriangleType(mockList.get(0)));
     }
 
     /*
