@@ -2,12 +2,12 @@ import com.company.*;
 import com.company.utilspkg.TriangleType;
 import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.mockito.BDDMockito;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.junit.runner.RunWith;
+import org.mockito.*;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TriangleTest {
 
 
@@ -189,9 +190,24 @@ public class TriangleTest {
     /*
         Test inject mocks
      */
+
+    @InjectMocks //cria uma instância da classe e injeta os mocks criados com @Mock ou @Spy
+    Triangle triangle = new Triangle(2,2,2);
+
+    @Mock
+    TriangleService triangleService = new TriangleService();
+
+    @Before
+    public void init(){
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     public void testInjectMocks(){
+        Triangle testTriangle = new Triangle(2,2,2);
 
+        boolean getType = triangle.getTriangleType(triangle);
+        assertEquals(true, getType);
     }
 
     /*

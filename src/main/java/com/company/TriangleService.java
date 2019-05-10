@@ -7,6 +7,9 @@ import static com.company.utilspkg.Utils.MIN_VALUE;
 
 public class TriangleService {
 
+
+
+
     /**
      * Returns a triangle with the id of the param
      * @param id
@@ -35,8 +38,8 @@ public class TriangleService {
     public void sendTriangle(Triangle triangle){
 
     }
-    public TriangleType getTriangleType(Triangle triangle){
-
+    public static TriangleType getTriangleType(Triangle triangle){
+      
         double a = triangle.getA();
         double b = triangle.getB();
         double c = triangle.getC();

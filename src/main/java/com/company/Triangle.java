@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.utilspkg.TriangleType;
+
 import java.util.ArrayList;
 
 public class Triangle {
@@ -7,8 +9,12 @@ public class Triangle {
     private int id;
     private double a,b,c;
     public ArrayList<Triangle> list;
+    TriangleService triangleService = new TriangleService();
+    TriangleType triangleType;
 
+    public Triangle(){
 
+    }
     public Triangle(double a, double b, double c) {
         this.a = a;
         this.b = b;
@@ -49,8 +55,14 @@ public class Triangle {
     }
 
 
+public boolean getTriangleType(Triangle triangle){
 
+        TriangleType type = triangleService.getTriangleType(triangle);
 
+        System.out.println("Triangle type: " + type);
+
+        return true;
+}
 
     @Override
     public String toString() {
