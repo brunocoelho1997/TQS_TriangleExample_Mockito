@@ -39,7 +39,7 @@ public class TriangleService {
 
     }
     public static TriangleType getTriangleType(Triangle triangle){
-      
+
         double a = triangle.getA();
         double b = triangle.getB();
         double c = triangle.getC();

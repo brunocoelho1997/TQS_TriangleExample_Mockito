@@ -12,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,11 +43,6 @@ public class TriangleTest {
         //TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
         //triangleBuilder.prepareTriangle(2,2,2);
         //System.out.println("RES: " + triangleBuilder.toString());
-
-
-
-
-
     }
 
     /*
@@ -115,7 +111,7 @@ public class TriangleTest {
 
         assertEquals(0, mockList.size());//Aqui está  adiferença entre o mock e spy, o mock não adiciona nada, apenas chama o metodo sem nenhum efeito colateral, ao contrario do spy que ele realmente chama a implementacao real do metodo add e adiciona o elemento a lista
 
-        System.out.println("Triangle type:" + triangleService.getTriangleType(mockList.get(0)));
+        //System.out.println("Triangle type:" + triangleService.getTriangleType(mockList.get(1)));
     }
 
     /*
@@ -182,8 +178,24 @@ public class TriangleTest {
     /*
         Test captor
      */
+    @Mock
+    List mockedList;
+
+    @Captor
+    ArgumentCaptor<Triangle> argCaptor;
+
     @Test
     public void testCaptor(){
+
+        Triangle test = new Triangle(1,2,2,2);
+
+        mockedList.add(test);
+
+        Mockito.verify(mockedList).add(argCaptor.capture());
+
+        assertEquals(test, argCaptor.getValue());
+
+        System.out.println("Argumento capturado: " + argCaptor.getValue());
 
     }
 
@@ -192,7 +204,7 @@ public class TriangleTest {
      */
 
     @InjectMocks //cria uma instância da classe e injeta os mocks criados com @Mock ou @Spy
-    Triangle triangle = new Triangle(2,2,2);
+    Triangle triangle = new Triangle(1,2,2,2);
 
     @Mock
     TriangleService triangleService = new TriangleService();
@@ -204,9 +216,9 @@ public class TriangleTest {
 
     @Test
     public void testInjectMocks(){
-        Triangle testTriangle = new Triangle(2,2,2);
+        Triangle testTriangle = new Triangle(2,2,2,2);
 
-        boolean getType = triangle.getTriangleType(triangle);
+        boolean getType = triangle.getTriangleType(testTriangle);
         assertEquals(true, getType);
     }
 
