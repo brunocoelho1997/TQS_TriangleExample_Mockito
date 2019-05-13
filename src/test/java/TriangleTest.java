@@ -183,7 +183,7 @@ public class TriangleTest {
 
     @Captor
     ArgumentCaptor<Triangle> argCaptor;
-
+ 
     @Test
     public void testCaptor(){
 
