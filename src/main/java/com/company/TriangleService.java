@@ -35,9 +35,6 @@ public class TriangleService {
      * @return
      */
 
-    public void sendTriangle(Triangle triangle){
-
-    }
     public static TriangleType getTriangleType(Triangle triangle){
 
         double a = triangle.getA();
@@ -73,5 +70,16 @@ public class TriangleService {
             return TriangleType.Isosceles;
 
         return TriangleType.Scalene;
+    }
+
+
+    /**
+     * Validate all attributes of the triangle and return true if it's a valid triangle, otherwise returns false
+     *
+     * @param triangle
+     * @return
+     */
+    private boolean validateTriangle(Triangle triangle){
+        throw new UnsupportedOperationException();
     }
 }
