@@ -29,7 +29,7 @@ public class TriangleService {
      * @param triangle
      * @return true if created and inserted in db with success, otherwise returns false
      */
-    public boolean create(Triangle triangle){
+    public boolean createTriangle(Triangle triangle){
         return fakeTriangleRepository.create(triangle);
     }
 

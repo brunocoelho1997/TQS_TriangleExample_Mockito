@@ -26,7 +26,9 @@ public class FakeTriangleRepository {
     }
 
     public boolean create(Triangle triangle) {
-        this.triangleList.add(triangleList.size() + 1, triangle);
+        if(triangle.getId() == 0)
+            triangle.setId(triangleList.size() + 1);
+        this.triangleList.add(triangle);
         return true;
     }
 }
