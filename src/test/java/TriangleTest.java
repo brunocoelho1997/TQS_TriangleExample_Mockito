@@ -1,17 +1,12 @@
 import com.company.*;
 import com.company.utilspkg.TriangleType;
-import com.sun.xml.internal.bind.v2.TODO;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -219,6 +214,23 @@ public class TriangleTest {
     /*
         Test inject mocks
      */
+    @InjectMocks
+    TriangleService triangleServiceInjectMocks;
+
+    /*
+    se colocarmos comentarios este TriangleFileManager como comentario
+    (que por sua vez esta entro da classe TriangleService)
+    vai dar nullPointerException
+     */
+    //@Mock
+    TriangleFileManager fileManager;
+
+    @Test
+    public void testInjectMocks() {
+        Triangle testTriangle = new Triangle(2, 2, 2);
+        boolean saved = triangleServiceInjectMocks.saveOnTxtFile(testTriangle);
+        assertEquals(true, saved);
+    }
 
     /*
     @InjectMocks //cria uma instância da classe e injeta os mocks criados com @Mock ou @Spy

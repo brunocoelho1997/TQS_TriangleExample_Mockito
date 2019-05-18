@@ -9,6 +9,8 @@ public class TriangleService {
 
     private FakeTriangleRepository fakeTriangleRepository;
 
+    private TriangleFileManager triangleFileManager;
+
     public TriangleService() {
         this.fakeTriangleRepository = new FakeTriangleRepository();
     }
@@ -84,5 +86,16 @@ public class TriangleService {
      */
     private boolean validateTriangle(Triangle triangle){
         throw new UnsupportedOperationException();
+    }
+
+
+    /**
+     * Save the Triangle on a txt file.
+     * @param triangle
+     * @return
+     */
+    public boolean saveOnTxtFile(Triangle triangle){
+        triangleFileManager.saveOnTxtFile(triangle);
+        return true;
     }
 }
