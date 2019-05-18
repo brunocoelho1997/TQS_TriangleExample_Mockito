@@ -26,23 +26,17 @@ public class TriangleTest {
      */
     @Test
     public void testDummyObject(){
-//TODO: Tentei várias maneiras de preencher o valor do objeto dummy, com sets e construtores etc etc mas nao consegui não sei porque, diz que é qq de ser mock e por vezes dava null pointer pq efetivamente nao preenchia o objeto. Contudo funciona como o esparado. Apenas queria mostrra com campos no objeto se der. Até pode não dar. Exemplo disso é o código que está comentado em baixo que ao fazer o print do objeto ele nao retorna nada. Acho que tem a ver com as propiedades do mock.
+
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
         Triangle dummy = Mockito.mock(Triangle.class);
 
         list.add(dummy);
 
-        assertEquals(1, list.size()); //Objeto dummy foi adicionado,
+        assertEquals(1, list.size());
 
-        //System.out.println("RES: " + list.toString()); //mas se quisermos verificar o valor dele é nulo claro porque nao foi preenchido com valores.
+       //System.out.println("RES: " + list.toString());
 
-
-        //Não retirar, foi uma conclusao que cheguei sobre mock que tenho de falar contigo!
-        //System.out.println("--------------------------------------------------------");
-        //TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
-        //triangleBuilder.prepareTriangle(2,2,2);
-        //System.out.println("RES: " + triangleBuilder.toString());
     }
 
     /*
@@ -87,8 +81,8 @@ public class TriangleTest {
         assertEquals(0, list.size());
 
         System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)) + "\n");
-        System.out.println("SIZE original list:" + list.size());//lista original permanece igual
-        System.out.println("SIZE spy list:" + spyList.size());//spy list é alterada
+        System.out.println("SIZE original list:" + list.size());
+        System.out.println("SIZE spy list:" + spyList.size());
 
     }
 
@@ -105,11 +99,10 @@ public class TriangleTest {
         Triangle triangle = new Triangle(2,3,2);
 
         mockList.add(triangle);
-        //TODO: Queria aqui usar o when para enriquecer isto mas não me está a ocorrer como :c
-        //Mockito.when(mockList.add(triangle)).thenReturn();
+
         Mockito.verify(mockList).add(triangle);
 
-        assertEquals(0, mockList.size());//Aqui está  adiferença entre o mock e spy, o mock não adiciona nada, apenas chama o metodo sem nenhum efeito colateral, ao contrario do spy que ele realmente chama a implementacao real do metodo add e adiciona o elemento a lista
+        assertEquals(0, mockList.size());
 
         //System.out.println("Triangle type:" + triangleService.getTriangleType(mockList.get(1)));
     }
@@ -183,7 +176,7 @@ public class TriangleTest {
 
     @Captor
     ArgumentCaptor<Triangle> argCaptor;
- 
+
     @Test
     public void testCaptor(){
 
