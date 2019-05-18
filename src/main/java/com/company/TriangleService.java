@@ -7,8 +7,11 @@ import static com.company.utilspkg.Utils.MIN_VALUE;
 
 public class TriangleService {
 
+    private FakeTriangleRepository fakeTriangleRepository;
 
-
+    public TriangleService() {
+        this.fakeTriangleRepository = new FakeTriangleRepository();
+    }
 
     /**
      * Returns a triangle with the id of the param
@@ -16,7 +19,7 @@ public class TriangleService {
      * @return triangle
      */
     public Triangle findTriangleById(int id){
-        throw new UnsupportedOperationException();
+        return fakeTriangleRepository.findTriangleById(id);
     }
 
     /**
@@ -25,7 +28,7 @@ public class TriangleService {
      * @return true if created and inserted in db with success, otherwise returns false
      */
     public boolean create(Triangle triangle){
-        throw new UnsupportedOperationException();
+        return fakeTriangleRepository.create(triangle);
     }
 
 

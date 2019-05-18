@@ -6,18 +6,15 @@ import java.util.ArrayList;
 
 public class Triangle {
 
-    private int id;
+    int id;
     private double a,b,c;
-    public ArrayList<Triangle> list;
-    TriangleService triangleService = new TriangleService();
-    TriangleType triangleType;
+
 
     public Triangle(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
-
 
     /**
      *
@@ -32,6 +29,15 @@ public class Triangle {
         //TODO: Must validate all parameters and then return the triangle
     }
 
+    /**
+     * Create a triangle with a b c with the same size
+     * @param id
+     * @param abc
+     */
+    public Triangle(int id, double abc){
+        //TODO: Must validate all parameters and then return the new triangle with a b c with the same size
+    }
+
     public double getA() {
         return a;
     }
@@ -44,10 +50,6 @@ public class Triangle {
         return c;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setA(double a){
         this.a=a;
     }
@@ -58,15 +60,13 @@ public class Triangle {
         this.c=c;
     }
 
+    public int getId() {
+        return id;
+    }
 
-public boolean getTriangleType(Triangle triangle){
-
-        TriangleType type = TriangleService.getTriangleType(triangle);
-
-        System.out.println("Triangle type: " + type);
-
-        return true;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
