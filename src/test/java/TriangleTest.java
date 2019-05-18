@@ -222,7 +222,7 @@ public class TriangleTest {
     (que por sua vez esta entro da classe TriangleService)
     vai dar nullPointerException
      */
-    //@Mock
+    @Mock
     TriangleFileManager fileManager;
 
     @Test
