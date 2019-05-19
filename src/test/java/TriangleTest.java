@@ -1,17 +1,12 @@
 import com.company.*;
 import com.company.utilspkg.TriangleType;
-import com.sun.xml.internal.bind.v2.TODO;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -127,7 +122,6 @@ public class TriangleTest {
 
         //Example 2:
         System.out.println("\nExample 2:");
-        TriangleService triangleService = new TriangleService();
         Triangle mockedTriangle = Mockito.mock(Triangle.class);
         Mockito.when(mockedTriangle.getA()).thenReturn(5.0);
         Mockito.when(mockedTriangle.getB()).thenReturn(5.0);
@@ -137,34 +131,42 @@ public class TriangleTest {
         System.out.println("Mocked Triangle - A: " + mockedTriangle.getA());
         System.out.println("Mocked Triangle - B: " + mockedTriangle.getB());
         System.out.println("Mocked Triangle - C: " + mockedTriangle.getC());
-        System.out.println("Mocked Triangle - Type: " + triangleService.getTriangleType(mockedTriangle));
+        System.out.println("Mocked Triangle - Type: " + TriangleService.getTriangleType(mockedTriangle));
         System.out.println("-----------------");
-
     }
 
     /*
-        Test sub object
+        Test fake object
      */
     @Test
     public void testFakeObject(){
 
         TriangleService triangleService = new TriangleService();
-        FakeTriangleRepository fakeTriangleRepository = new FakeTriangleRepository();
 
-        Triangle invalidInputsTriangle = fakeTriangleRepository.findTriangleById(1);
+        System.out.println("Test findTriangleById");
+        Triangle invalidInputsTriangle = triangleService.findTriangleById(1);
         System.out.println(invalidInputsTriangle);
-        Assertions.assertEquals(TriangleType.INVALID_INPUTS, triangleService.getTriangleType(invalidInputsTriangle));
+        Assertions.assertEquals(TriangleType.INVALID_INPUTS, TriangleService.getTriangleType(invalidInputsTriangle));
 
-        Triangle equilateralTriangle = fakeTriangleRepository.findTriangleById(2);
+        Triangle equilateralTriangle = triangleService.findTriangleById(2);
         System.out.println(equilateralTriangle);
-        assertEquals(TriangleType.Equilateral, triangleService.getTriangleType(equilateralTriangle));
+        assertEquals(TriangleType.Equilateral, TriangleService.getTriangleType(equilateralTriangle));
 
-        Triangle isoscelesTriangle = fakeTriangleRepository.findTriangleById(3);
+        Triangle isoscelesTriangle = triangleService.findTriangleById(3);
         System.out.println(isoscelesTriangle);
-        assertEquals(TriangleType.Isosceles, triangleService.getTriangleType(isoscelesTriangle));
+        assertEquals(TriangleType.Isosceles, TriangleService.getTriangleType(isoscelesTriangle));
 
-        Triangle notTriangle = fakeTriangleRepository.findTriangleById(4);
-        assertEquals(TriangleType.Scalene, triangleService.getTriangleType(notTriangle));
+        System.out.println("Test create & findTriangleById");
+
+        Triangle triangleTmp = new Triangle(1,2,3);
+        triangleService.create(triangleTmp);
+
+        triangleTmp = null;
+
+        //assumindo que sabemos que ele vai ter o ID = 5
+        triangleTmp = triangleService.findTriangleById(5);
+        System.out.println(triangleTmp);
+        assertEquals(TriangleType.NOT_A_TRIANGLE, TriangleService.getTriangleType(triangleTmp));
 
     }
 
@@ -180,7 +182,7 @@ public class TriangleTest {
     @Test
     public void testCaptor(){
 
-        Triangle test = new Triangle(1,2,2,2);
+        Triangle test = new Triangle(2,2,2);
 
         mockedList.add(test);
 
@@ -195,7 +197,25 @@ public class TriangleTest {
     /*
         Test inject mocks
      */
+    @InjectMocks
+    TriangleService triangleServiceInjectMocks;
 
+    /*
+    se colocarmos comentarios este TriangleFileManager como comentario
+    (que por sua vez esta entro da classe TriangleService)
+    vai dar nullPointerException
+     */
+    @Mock
+    TriangleFileManager fileManager;
+
+    @Test
+    public void testInjectMocks() {
+        Triangle testTriangle = new Triangle(2, 2, 2);
+        boolean saved = triangleServiceInjectMocks.saveOnTxtFile(testTriangle);
+        assertEquals(true, saved);
+    }
+
+    /*
     @InjectMocks //cria uma instância da classe e injeta os mocks criados com @Mock ou @Spy
     Triangle triangle = new Triangle(1,2,2,2);
 
@@ -214,6 +234,8 @@ public class TriangleTest {
         boolean getType = triangle.getTriangleType(testTriangle);
         assertEquals(true, getType);
     }
+    */
+
 
     /*
         Test BDD Mockito
@@ -221,8 +243,8 @@ public class TriangleTest {
     @Test
     public void testBDDMockito(){
 
-        System.out.println("-----------------");
-        System.out.println("-Test BDD Mockito-");
+        System.out.println("-----------------------");
+        System.out.println("------Test BDD Mockito------");
 
 
         System.out.println("-Without BDD Mockito-");
@@ -253,10 +275,8 @@ public class TriangleTest {
         //verifica se o método add foi chamado e com este triangulo
         BDDMockito.then(triangleListMocked).should().add(triangle);
 
-
         //exemplo de erro
         //BDDMockito.then(triangleListMocked).should().remove(triangle);
-
     }
 
     /*
@@ -269,7 +289,7 @@ public class TriangleTest {
         //Mockito.when(new Triangle(1,2,3,4)).thenReturn(new Triangle(1,2,3,4));
 
         //Mocking static methods
-        Triangle triangle = new Triangle(2,2,2);
+        Triangle triangle = new Triangle(100, 2);
         //Mockito.when(TriangleService.getTriangleType(triangle)).thenReturn(TriangleType.Equilateral);
 
 

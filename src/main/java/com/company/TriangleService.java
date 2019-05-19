@@ -7,7 +7,13 @@ import static com.company.utilspkg.Utils.MIN_VALUE;
 
 public class TriangleService {
 
+    private FakeTriangleRepository fakeTriangleRepository;
 
+    private TriangleFileManager triangleFileManager;
+
+    public TriangleService() {
+        this.fakeTriangleRepository = new FakeTriangleRepository();
+    }
 
     /**
      * Returns a triangle with the id of the param
@@ -15,7 +21,7 @@ public class TriangleService {
      * @return triangle
      */
     public Triangle findTriangleById(int id){
-        throw new UnsupportedOperationException();
+        return fakeTriangleRepository.findTriangleById(id);
     }
 
     /**
@@ -24,7 +30,7 @@ public class TriangleService {
      * @return true if created and inserted in db with success, otherwise returns false
      */
     public boolean create(Triangle triangle){
-        throw new UnsupportedOperationException();
+        return fakeTriangleRepository.create(triangle);
     }
 
 
@@ -80,5 +86,16 @@ public class TriangleService {
      */
     private boolean validateTriangle(Triangle triangle){
         throw new UnsupportedOperationException();
+    }
+
+
+    /**
+     * Save the Triangle on a txt file.
+     * @param triangle
+     * @return
+     */
+    public boolean saveOnTxtFile(Triangle triangle){
+        triangleFileManager.saveOnTxtFile(triangle);
+        return true;
     }
 }
