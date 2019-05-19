@@ -260,33 +260,27 @@ public class TriangleTest {
     }
 
     /*
-
+        Test Mockito limitations
+     */
     @Test
-    public void exampleTest(){
+    public void testMockitoLimitations(){
 
-        TriangleService triangleService = Mockito.mock(TriangleService.class);
+        //Mocking a constructor
+        //Mockito.when(new Triangle(1,2,3,4)).thenReturn(new Triangle(1,2,3,4));
 
-        Mockito.when(triangleService.findTriangleById(1)).thenReturn(new Triangle(-2, -1, 12));
-        Mockito.when(triangleService.findTriangleById(2)).thenReturn(new Triangle(1,1,1));
-        Mockito.when(triangleService.findTriangleById(3)).thenReturn(new Triangle(MIDDLE_VALUE, MIN_VALUE, MIDDLE_VALUE));
-        Mockito.when(triangleService.findTriangleById(4)).thenReturn(new Triangle(MAX_VALUE - 1, MIDDLE_VALUE, MIDDLE_VALUE + 1));
-
-
-
-        Triangle invalidInputsTriangle = triangleService.findTriangleById(1);
-        assertEquals(TriangleType.INVALID_INPUTS, TriangleService.getTriangleType(invalidInputsTriangle));
-
-        Triangle equilateralTriangle = triangleService.findTriangleById(2);
-        assertEquals(TriangleType.Equilateral, TriangleService.getTriangleType(equilateralTriangle));
-
-        Triangle isoscelesTriangle = triangleService.findTriangleById(3);
-        assertEquals(TriangleType.Isosceles, TriangleService.getTriangleType(isoscelesTriangle));
+        //Mocking static methods
+        Triangle triangle = new Triangle(2,2,2);
+        //Mockito.when(TriangleService.getTriangleType(triangle)).thenReturn(TriangleType.Equilateral);
 
 
-        Triangle notTriangle = triangleService.findTriangleById(4);
-        assertEquals(TriangleType.Scalene, TriangleService.getTriangleType(notTriangle));
+        Triangle triangleA = new Triangle(1,2,3,4);
+        Triangle triangleB = new Triangle(1,2,3,4);
+        //Mockito.when(triangleA.equals(triangleB)).thenReturn(true);
 
+        //imaginando que queriamos ter um método que validasse todos os campos de um trianglo, caso este estivesse tudo bem retornava true
+        Triangle triangleC = new Triangle(1,2,3,4);
+        TriangleService triangleService = new TriangleService();
+        //Mockito.when(triangleService.validateTriangle(triangle)).thenReturn(true);
     }
-    */
 
 }

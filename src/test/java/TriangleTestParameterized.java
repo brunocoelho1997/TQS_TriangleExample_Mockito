@@ -62,15 +62,13 @@ public class TriangleTestParameterized {
     @Test
     public void testTriangleType() {
 
-        TriangleService triangleService = new TriangleService();
-
         System.out.println("Testing :"+a+","+b+","+c+" -> "+res);
 
         TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
         triangleBuilder.prepareTriangle(a,b,c);
         Mockito.when(triangleBuilder.build()).thenReturn(new Triangle(a,b,c));
 
-        Assertions.assertEquals(res, triangleService.getTriangleType(triangleBuilder.build()));
+        Assertions.assertEquals(res, TriangleService.getTriangleType(triangleBuilder.build()));
     }
 
 }

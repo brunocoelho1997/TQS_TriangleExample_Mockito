@@ -21,11 +21,18 @@ public class Triangle {
         this.c = c;
     }
 
+
+    /**
+     *
+     * Create a triangle with all received parameters
+     *
+     * @param id
+     * @param a
+     * @param b
+     * @param c
+     */
     public Triangle(int id, double a, double b, double c) {
-        this.id = id;
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        //TODO: Must validate all parameters and then return the triangle
     }
 
     public double getA() {
@@ -55,14 +62,14 @@ public class Triangle {
     }
 
 
-public boolean getTriangleType(Triangle triangle){
+//public boolean getTriangleType(Triangle triangle){
 
-        TriangleType type = triangleService.getTriangleType(triangle);
+       // TriangleType type = TriangleService.getTriangleType(triangle);
 
-        System.out.println("Triangle type: " + type);
+       // System.out.println("Triangle type: " + type);
 
-        return true;
-}
+        //return true;
+//}
 
     @Override
     public String toString() {
