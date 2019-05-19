@@ -62,7 +62,7 @@ public class TriangleTest {
 
 //-------------------------------------------------------------------------
 
-        //Outro exemplo
+        //Outro exemplo 
         ArrayList<Triangle> list = new ArrayList<Triangle>();
 
         ArrayList<Triangle> spyList = Mockito.spy(list);
