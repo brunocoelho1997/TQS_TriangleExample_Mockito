@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Triangle {
 
-    int id;
+    private int id;
     private double a,b,c;
 
 
@@ -26,7 +26,10 @@ public class Triangle {
      * @param c
      */
     public Triangle(int id, double a, double b, double c) {
-        //TODO: Must validate all parameters and then return the triangle
+        this.id = id;
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
     /**

@@ -159,7 +159,7 @@ public class TriangleTest {
         System.out.println("Test create & findTriangleById");
 
         Triangle triangleTmp = new Triangle(1,2,3);
-        triangleService.create(triangleTmp);
+        triangleService.createTriangle(triangleTmp);
 
         triangleTmp = null;
 
