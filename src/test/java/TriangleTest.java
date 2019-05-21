@@ -115,8 +115,8 @@ public class TriangleTest {
         System.out.println("Example 1:");
         TriangleBuilder triangleBuilder = Mockito.mock(TriangleBuilder.class);
 
-        triangleBuilder.prepareTriangle(-2.0,-1.0,12.0);
-        Mockito.when(triangleBuilder.build()).thenReturn(new Triangle(-2, -1, 12));
+        triangleBuilder.prepareTriangle(2.0,1.0,12.0);
+        Mockito.when(triangleBuilder.build()).thenReturn(new Triangle(2.0,1.0,12.0));
 
         System.out.println("Triangle returned by TriangleBuilder: " + triangleBuilder.build());
 
@@ -214,28 +214,6 @@ public class TriangleTest {
         boolean saved = triangleServiceInjectMocks.saveOnTxtFile(testTriangle);
         assertEquals(true, saved);
     }
-
-    /*
-    @InjectMocks //cria uma instância da classe e injeta os mocks criados com @Mock ou @Spy
-    Triangle triangle = new Triangle(1,2,2,2);
-
-    @Mock
-    TriangleService triangleService = new TriangleService();
-
-    @Before
-    public void init(){
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void testInjectMocks(){
-        Triangle testTriangle = new Triangle(2,2,2,2);
-
-        boolean getType = triangle.getTriangleType(testTriangle);
-        assertEquals(true, getType);
-    }
-    */
-
 
     /*
         Test BDD Mockito
