@@ -16,70 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TriangleTest {
 
 
-    /*
-        Test dummy object
-     */
-    @Test
-    public void testDummyObject(){
-
-        ArrayList<Triangle> list = new ArrayList<Triangle>();
-
-        Triangle dummy = Mockito.mock(Triangle.class);
-
-        list.add(dummy);
-
-        assertEquals(1, list.size());
-
-       //System.out.println("RES: " + list.toString());
-
-    }
-
-    /*
-        Test spy object
-     */
-
-    @Spy
-     ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
-
-    @Test
-    public void testSpyObject(){
-
-        TriangleService triangleService = new TriangleService();
 
 
-        Triangle triangle = new Triangle(2,2,2);
-
-        triangleList.add(triangle);
-        //triangleService.sendTriangle(triangleList.get(0));
-
-        Mockito.verify(triangleList).add(triangle);
-        //Mockito.verify(triangleService, times()).sendTriangle(triangleList.get(0));
-
-        assertEquals(1, triangleList.size());
-
-        System.out.println("Triangle type:" + triangleService.getTriangleType(triangleList.get(0)));
-        System.out.println("--------------------------------------------------------");
-
-//-------------------------------------------------------------------------
-
-        //Outro exemplo 
-        ArrayList<Triangle> list = new ArrayList<Triangle>();
-
-        ArrayList<Triangle> spyList = Mockito.spy(list);
-
-        Triangle triangle2 = new Triangle(2,3,2);
-        spyList.add(triangle2);
-
-        Mockito.verify(spyList).add(triangle2);
-
-        assertEquals(1, spyList.size());
-        assertEquals(0, list.size());
-
-        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)) + "\n");
-        System.out.println("SIZE original list:" + list.size());
-        System.out.println("SIZE spy list:" + spyList.size());
-
-    }
 
     /*
         Test mock object
@@ -133,6 +71,72 @@ public class TriangleTest {
         System.out.println("Mocked Triangle - C: " + mockedTriangle.getC());
         System.out.println("Mocked Triangle - Type: " + TriangleService.getTriangleType(mockedTriangle));
         System.out.println("-----------------");
+    }
+
+     /*
+        Test spy object
+     */
+
+    @Spy
+    ArrayList<Triangle> triangleList = Mockito.spy(new ArrayList<Triangle>());
+
+    @Test
+    public void testSpyObject(){
+
+        TriangleService triangleService = new TriangleService();
+
+
+        Triangle triangle = new Triangle(2,2,2);
+
+        triangleList.add(triangle);
+        //triangleService.sendTriangle(triangleList.get(0));
+
+        Mockito.verify(triangleList).add(triangle);
+        //Mockito.verify(triangleService, times()).sendTriangle(triangleList.get(0));
+
+        assertEquals(1, triangleList.size());
+
+        System.out.println("Triangle type:" + triangleService.getTriangleType(triangleList.get(0)));
+        System.out.println("--------------------------------------------------------");
+
+//-------------------------------------------------------------------------
+
+        //Outro exemplo
+        ArrayList<Triangle> list = new ArrayList<Triangle>();
+
+        ArrayList<Triangle> spyList = Mockito.spy(list);
+
+        Triangle triangle2 = new Triangle(2,3,2);
+        spyList.add(triangle2);
+
+        Mockito.verify(spyList).add(triangle2);
+
+        assertEquals(1, spyList.size());
+        assertEquals(0, list.size());
+
+        System.out.println("Triangle 1 type:" + triangleService.getTriangleType(spyList.get(0)) + "\n");
+        System.out.println("SIZE original list:" + list.size());
+        System.out.println("SIZE spy list:" + spyList.size());
+
+    }
+
+
+    /*
+        Test dummy object
+     */
+    @Test
+    public void testDummyObject(){
+
+        ArrayList<Triangle> list = new ArrayList<Triangle>();
+
+        Triangle dummy = Mockito.mock(Triangle.class);
+
+        list.add(dummy);
+
+        assertEquals(1, list.size());
+
+        //System.out.println("RES: " + list.toString());
+
     }
 
     /*
@@ -195,27 +199,6 @@ public class TriangleTest {
     }
 
     /*
-        Test inject mocks
-     */
-    @InjectMocks
-    TriangleService triangleServiceInjectMocks;
-
-    /*
-    se colocarmos comentarios este TriangleFileManager como comentario
-    (que por sua vez esta entro da classe TriangleService)
-    vai dar nullPointerException
-     */
-    @Mock
-    TriangleFileManager fileManager;
-
-    @Test
-    public void testInjectMocks() {
-        Triangle testTriangle = new Triangle(2, 2, 2);
-        boolean saved = triangleServiceInjectMocks.saveOnTxtFile(testTriangle);
-        assertEquals(true, saved);
-    }
-
-    /*
         Test BDD Mockito
      */
     @Test
@@ -264,7 +247,7 @@ public class TriangleTest {
     public void testMockitoLimitations(){
 
         //Mocking a constructor
-        //Mockito.when(new Triangle(1,2,3,4)).thenReturn(new Triangle(1,2,3,4));
+        Mockito.when(new Triangle(1,2,3,4)).thenReturn(new Triangle(1,2,3,4));
 
         //Mocking static methods
         Triangle triangle = new Triangle(100, 2);
